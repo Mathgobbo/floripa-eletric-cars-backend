@@ -12,8 +12,10 @@ app.get("/customer", async (request, response) => {
   return response.send(customers)
 })
 
-app.get("/customer/:id", (request, response) => {
-  //GET CUSTOMER BY ID
+app.get("/customer/:id", async (request, response) => {
+  const {id} = request.params;
+  const customer = await CustomerModel.findById(id)
+  return response.send(customer)
 })
 
 app.post("/customer", async (request, response) => {
@@ -22,12 +24,17 @@ app.post("/customer", async (request, response) => {
   return response.send(newCustomer)
 })
 
-app.patch("/customer", (request, response)=> {
-  //UPDATE CUSTOMER
+app.patch("/customer/:id", async (request, response)=> {
+  const {body} = request
+  const {id} = request.params;
+  const updatedCustomer = await CustomerModel.updateOne({_id: id}, body)
+  return response.send(updatedCustomer)
 })
 
-app.delete("/customer/:id", (request, response)=> {
-  //DELETE CUSTOMER
+app.delete("/customer/:id", async (request, response)=> {
+  const {id} = request.params;
+  const deleted = await CustomerModel.deleteOne({_id: id})
+  return response.send(deleted)
 })
 
 app.listen(8080, ()=> {
