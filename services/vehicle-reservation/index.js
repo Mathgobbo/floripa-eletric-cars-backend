@@ -10,7 +10,7 @@ app.use(express.json())
 const hoursNotation = 36e5 // 1000 * 60 * 60
 
 app.post("/vehicle-reservation", async (request, response) => {
-  const {vehicleId, from, to} = request.body
+  const {vehicleId, customerId, from, to} = request.body
   let fromDate = Date.parse(from)
   let toDate = Date.parse(to)
   if(isNaN(fromDate)) return response.status(422).send("'from' não é uma data válida")
@@ -27,7 +27,7 @@ app.post("/vehicle-reservation", async (request, response) => {
     return response.status(500).send("Veículo não existente")
   }
 
-  const newReservation = await VehicleReservationModel.create({vehicleId, from, to})
+  const newReservation = await VehicleReservationModel.create({vehicleId, customerId, from, to})
   return response.send(newReservation)
 })
 
