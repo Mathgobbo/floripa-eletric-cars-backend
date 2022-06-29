@@ -1,0 +1,16 @@
+{
+  "name": "floripa-eletric-cars-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Mathgobbo/floripa-eletric-cars-backend.git",
+  "author": "Matheus Gobbo Bernardi <matgobbo@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-http-proxy": "^1.6.3",
+    "morgan": "^1.10.0"
+  }
+}
